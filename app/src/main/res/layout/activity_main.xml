@@ -243,7 +243,7 @@
     </android.support.v7.widget.GridLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/numViewFieldBorder"
         android:layout_width="354dp"
         android:layout_height="93dp"
         android:layout_marginStart="28dp"
@@ -257,7 +257,7 @@
         app:srcCompat="@android:color/darker_gray" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/numViewField"
         android:layout_width="342dp"
         android:layout_height="83dp"
         android:layout_marginStart="37dp"
@@ -271,7 +271,7 @@
         app:srcCompat="?android:attr/colorButtonNormal" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/numView"
         android:layout_width="351dp"
         android:layout_height="94dp"
         android:layout_marginStart="16dp"
@@ -280,7 +280,7 @@
         android:layout_marginBottom="428dp"
         android:fontFamily="serif-monospace"
         android:gravity="bottom|right"
-        android:text="@string/numberView"
+        android:text="@string/numView"
         android:textAlignment="textEnd"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="36sp"
