@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
+
 public class MainActivity extends AppCompatActivity {
 
     TextView numView;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     Button buttonDec;
     Button buttonEquals;
 
+    double currentNum = Double.NaN;
+    String currentOp = "noOp";
 
 
     @Override
@@ -44,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         numView = findViewById(R.id.numView);
         numView.setText("");
         numView.setTextColor(Color.BLACK);
-
 
         button0 = findViewById(R.id.button0);
         button1 = findViewById(R.id.button1);
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed 0", Toast.LENGTH_LONG).show();
+
                 numView.append("0");
 
             }
@@ -79,6 +82,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed 1", Toast.LENGTH_LONG).show();
+
+                if(currentOp.equals("noOp")){
+                    currentNum = 1;
+                }
+                else if(currentOp.equals("+")){
+                    currentNum += 1;
+                }
+                else if(currentOp.equals("-")){
+                    currentNum -= 1;
+                }
+                else if(currentOp.equals("*")){
+                    currentNum *= 1;
+                }
+                else if(currentOp.equals("/")){
+                    currentNum /= 1;
+                }
+
                 numView.append("1");
 
             }
@@ -88,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed 2", Toast.LENGTH_LONG).show();
+
+
                 numView.append("2");
 
             }
@@ -161,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed C", Toast.LENGTH_LONG).show();
                 numView.setText("");
+                numView.setTextColor(Color.BLACK);
+
 
             }
         });
@@ -170,6 +194,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 Toast.makeText(getApplicationContext(), "pressed CE", Toast.LENGTH_LONG).show();
                 numView.setText("");
+                numView.setTextColor(Color.BLACK);
+                currentNum = Double.NaN;
+                currentOp = "noOp";
 
             }
         });
@@ -178,7 +205,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed +", Toast.LENGTH_LONG).show();
-                numView.append("+");
+
+                if(currentOp.equals("noOp")){
+                    currentOp = "+";
+                    numView.append("+");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), currentOp, Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -186,8 +220,14 @@ public class MainActivity extends AppCompatActivity {
         buttonSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                Toast.makeText(getApplicationContext(), "pressed -", Toast.LENGTH_LONG).show();
-                numView.append("-");
+                //Toast.makeText(getApplicationContext(), "pressed -", Toast.LENGTH_LONG).show();
+                if(currentOp.equals("noOp")){
+                    currentOp = "-";
+                    numView.append("-");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "bad input", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -196,7 +236,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed *", Toast.LENGTH_LONG).show();
-                numView.append("*");
+                if(currentOp.equals("noOp")){
+                    currentOp = "*";
+                    numView.append("*");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "bad input", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -205,7 +251,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed /", Toast.LENGTH_LONG).show();
-                numView.append("/");
+                if(currentOp.equals("noOp")){
+                    currentOp = "/";
+                    numView.append("/");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "bad input", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -223,7 +275,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed Equals", Toast.LENGTH_LONG).show();
-                System.out.println(numView.getText().toString());
+
+                //These are funny jokes ha ha
                 if(numView.getText().toString().equals("69")) {
                     Toast.makeText(getApplicationContext(), "nice", Toast.LENGTH_LONG).show();
 
@@ -231,7 +284,13 @@ public class MainActivity extends AppCompatActivity {
                 if(numView.getText().toString().equals("420")){
                     numView.setTextColor(Color.GREEN);
                 }
-                    numView.setText("Insert Result Here");
+                //End humor
+
+                String solution = Double.toString(currentNum);
+                numView.setText(solution);
+
+                //Reset operator
+                currentOp = "noOp";
 
             }
         });
