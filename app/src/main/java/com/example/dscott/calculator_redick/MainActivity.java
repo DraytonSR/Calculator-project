@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonDec;
     Button buttonEquals;
 
-    double currentNum = Double.NaN;
+    int currentNum = 0;
     String currentOp = "noOp";
 
 
@@ -83,8 +83,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 //Toast.makeText(getApplicationContext(), "pressed 1", Toast.LENGTH_LONG).show();
 
-                if(currentOp.equals("noOp")){
+                if(currentOp.equals("noOp") && currentNum == 0){
                     currentNum = 1;
+                }
+                else if(currentOp.equals("noOp") && currentNum != 0){
+                    String concat = String.valueOf(currentNum) + "1";
+                    currentNum = Integer.parseInt(concat);
                 }
                 else if(currentOp.equals("+")){
                     currentNum += 1;
@@ -195,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "pressed CE", Toast.LENGTH_LONG).show();
                 numView.setText("");
                 numView.setTextColor(Color.BLACK);
-                currentNum = Double.NaN;
+                currentNum = 0;
                 currentOp = "noOp";
 
             }
@@ -286,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //End humor
 
-                String solution = Double.toString(currentNum);
+                String solution = Integer.toString(currentNum);
                 numView.setText(solution);
 
                 //Reset operator
